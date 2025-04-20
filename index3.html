@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #fbe3c7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            background-color: #fbe3c7;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            flex-direction: row;
+        }
+
+        .left-section {
+            flex: 1;
+            padding: 40px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 700px;
+            overflow: hidden;
+        }
+
+        .right-section {
+            width: 450px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 0 12px 12px 0;
+            z-index: 2;
+        }
+
+        /* Decorative elements */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 200px;
+            height: 200px;
+            background-color: #b23c3c;
+            top: -50px;
+            left: -50px;
+        }
+
+        .blob-2 {
+            width: 120px;
+            height: 120px;
+            background-color: #b23c3c;
+            opacity: 0.3;
+            bottom: -30px;
+            right: -30px;
+        }
+
+        .small-blob {
+            width: 25px;
+            height: 25px;
+            background-color: #b23c3c;
+            opacity: 0.5;
+        }
+
+        .blob-3 {
+            top: 20%;
+            right: 25%;
+        }
+
+        .blob-4 {
+            top: 50%;
+            left: 20%;
+        }
+
+        .line {
+            position: absolute;
+            background-color: #fff;
+            opacity: 0.3;
+            transform: rotate(-45deg);
+            z-index: 0;
+        }
+
+        .line-1 {
+            width: 200px;
+            height: 1px;
+            top: 20%;
+            left: -50px;
+        }
+
+        .line-2 {
+            width: 150px;
+            height: 1px;
+            bottom: 30%;
+            right: 10%;
+        }
+
+        /* Skeleton illustration */
+        .skeleton-container {
+            position: relative;
+            width: 250px;
+            height: 300px;
+            z-index: 1;
+            margin-bottom: 30px;
+            max-width: 100%;
+        }
+
+        .circle-bg {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background-color: rgba(178, 60, 60, 0.2);
+            border-radius: 50%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+
+        .skeleton {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* Text bubbles */
+        .text-bubble {
+            position: absolute;
+            background-color: #6a1b47;
+            color: white;
+            border-radius: 12px;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bubble-left {
+            left: -30px;
+            top: 30%;
+        }
+
+        .bubble-right {
+            right: -30px;
+            top: 30%;
+        }
+
+        .dots {
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Plants decoration */
+        .plants {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .plant {
+            width: 15px;
+            height: 40px;
+            background-color: #b23c3c;
+            border-radius: 20px;
+            margin: 0 3px;
+            transform-origin: bottom;
+        }
+
+        .plant:nth-child(odd) {
+            background-color: #6a1b47;
+        }
+
+        .plant:nth-child(3n) {
+            background-color: #e6a860;
+            height: 50px;
+        }
+
+        .plant:nth-child(2n) {
+            transform: rotate(-15deg);
+        }
+
+        .plant:nth-child(3n) {
+            transform: rotate(15deg);
+        }
+
+        /* Form styles */
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            position: relative;
+        }
+
+        .logo-line {
+            position: absolute;
+            background-color: #333;
+            width: 20px;
+            height: 2px;
+        }
+
+        .line-h1 {
+            top: 50%;
+            left: 0;
+        }
+
+        .line-h2 {
+            top: 50%;
+            right: 0;
+        }
+
+        .line-v1 {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(90deg);
+        }
+
+        .line-v2 {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(90deg);
+        }
+
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            background-color: white;
+            margin-bottom: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .google-icon {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .divider::before {
+            margin-right: 10px;
+        }
+
+        .divider::after {
+            margin-left: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        input {
+            padding: 12px;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .terms input {
+            margin: 2px 8px 0 0;
+            width: auto;
+        }
+
+        .terms a {
+            color: #6a1b47;
+            text-decoration: none;
+        }
+
+        .signup-btn {
+            background-color: #6a1b47;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .login-link {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #6a1b47;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Tagline text */
+        .tagline {
+            margin-top: 20px;
+            z-index: 1;
+            padding: 0 20px;
+        }
+
+        .tagline h2 {
+            color: #6a1b47;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .tagline p {
+            color: #6a1b47;
+            font-size: 16px;
+        }
+
+        /* Error message */
+        .error-message {
+            font-size: 12px;
+            color: #b23c3c;
+            margin-top: -15px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        input:invalid:not(:placeholder-shown)+.error-message {
+            display: block;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1100px) {
+            .right-section {
+                width: 400px;
+            }
+
+            .skeleton-container {
+                width: 220px;
+                height: 270px;
+            }
+
+            .circle-bg {
+                width: 190px;
+                height: 190px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                max-width: 600px;
+            }
+
+            .left-section {
+                min-height: 500px;
+                padding: 30px 20px;
+            }
+
+            .right-section {
+                width: 100%;
+                border-radius: 0 0 12px 12px;
+            }
+
+            .tagline h2 {
+                font-size: 24px;
+            }
+
+            .tagline p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 5px;
+                margin-bottom: 0;
+            }
+
+            .left-section {
+                min-height: 400px;
+                padding: 20px 15px;
+            }
+
+            .right-section {
+                padding: 30px 20px;
+            }
+
+            .skeleton-container {
+                width: 180px;
+                height: 220px;
+                margin-bottom: 20px;
+            }
+
+            .circle-bg {
+                width: 160px;
+                height: 160px;
+            }
+
+            .text-bubble {
+                padding: 6px 10px;
+            }
+
+            .bubble-left {
+                left: -15px;
+            }
+
+            .bubble-right {
+                right: -15px;
+            }
+
+            .dots {
+                letter-spacing: 1px;
+                font-size: 12px;
+            }
+
+            .plants {
+                width: 160px;
+            }
+
+            .plant {
+                width: 12px;
+                height: 35px;
+                margin: 0 2px;
+            }
+
+            .tagline h2 {
+                font-size: 22px;
+            }
+
+            .tagline p {
+                font-size: 13px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .skeleton-container {
+                width: 150px;
+                height: 180px;
+            }
+
+            .circle-bg {
+                width: 130px;
+                height: 130px;
+            }
+
+            .text-bubble {
+                padding: 5px 8px;
+            }
+
+            .dots {
+                font-size: 10px;
+            }
+
+            .right-section {
+                padding: 25px 15px;
+            }
+
+            .terms {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Left section with illustration -->
+        <div class="left-section">
+            <!-- Decorative blobs -->
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob small-blob blob-3"></div>
+            <div class="blob small-blob blob-4"></div>
+
+            <!-- Decorative lines -->
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+
+            <!-- Skeleton illustration -->
+            <div class="skeleton-container">
+                <div class="circle-bg"></div>
+                <div class="text-bubble bubble-left">
+                    <span class="dots">• • • • • •</span>
+                </div>
+                <div class="text-bubble bubble-right">
+                    <span class="dots">• • • • • •</span>
+                </div>
+
+                <!-- Simple skeleton SVG -->
+                <svg class="skeleton" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Skull -->
+                    <ellipse cx="100" cy="50" rx="40" ry="45" fill="#f8fce8" stroke="#333" stroke-width="1.5" />
+
+                    <!-- Eyes -->
+                    <ellipse cx="85" cy="45" rx="10" ry="8" fill="#222" />
+                    <ellipse cx="115" cy="45" rx="10" ry="8" fill="#222" />
+
+                    <!-- Teeth -->
+                    <rect x="82" y="70" width="36" height="10" fill="#f8fce8" stroke="#333" stroke-width="1" />
+                    <line x1="88" y1="70" x2="88" y2="80" stroke="#333" stroke-width="1" />
+                    <line x1="94" y1="70" x2="94" y2="80" stroke="#333" stroke-width="1" />
+                    <line x1="100" y1="70" x2="100" y2="80" stroke="#333" stroke-width="1" />
+                    <line x1="106" y1="70" x2="106" y2="80" stroke="#333" stroke-width="1" />
+                    <line x1="112" y1="70" x2="112" y2="80" stroke="#333" stroke-width="1" />
+
+                    <!-- Spine and ribs -->
+                    <line x1="100" y1="95" x2="100" y2="170" stroke="#f8fce8" stroke-width="8" />
+                    <path d="M100,100 Q85,105 70,103" fill="none" stroke="#f8fce8" stroke-width="6" />
+                    <path d="M100,100 Q115,105 130,103" fill="none" stroke="#f8fce8" stroke-width="6" />
+                    <path d="M100,115 Q85,120 70,118" fill="none" stroke="#f8fce8" stroke-width="6" />
+                    <path d="M100,115 Q115,120 130,118" fill="none" stroke="#f8fce8" stroke-width="6" />
+                    <path d="M100,130 Q85,135 70,133" fill="none" stroke="#f8fce8" stroke-width="6" />
+                    <path d="M100,130 Q115,135 130,133" fill="none" stroke="#f8fce8" stroke-width="6" />
+                    <path d="M100,145 Q85,150 70,148" fill="none" stroke="#f8fce8" stroke-width="6" />
+                    <path d="M100,145 Q115,150 130,148" fill="none" stroke="#f8fce8" stroke-width="6" />
+
+                    <!-- Arms -->
+                    <path d="M70,110 Q60,130 50,160" fill="none" stroke="#f8fce8" stroke-width="6" />
+                    <path d="M130,110 Q140,130 150,160" fill="none" stroke="#f8fce8" stroke-width="6" />
+
+                    <!-- Laptop -->
+                    <rect x="70" y="170" width="60" height="40" rx="3" fill="#ccc" />
+                    <rect x="75" y="175" width="50" height="30" rx="2" fill="#f0f0f0" />
+
+                    <!-- Skull icon on laptop -->
+                    <circle cx="100" cy="190" r="8" fill="#fff" stroke="#222" stroke-width="1" />
+                    <circle cx="96" cy="188" r="2" fill="#222" />
+                    <circle cx="104" cy="188" r="2" fill="#222" />
+                    <path d="M95,194 Q100,198 105,194" fill="none" stroke="#222" stroke-width="1" />
+                </svg>
+
+                <!-- Plants decoration -->
+                <div class="plants">
+                    <div class="plant"></div>
+                    <div class="plant"></div>
+                    <div class="plant"></div>
+                    <div class="plant"></div>
+                    <div class="plant"></div>
+                    <div class="plant"></div>
+                    <div class="plant"></div>
+                    <div class="plant"></div>
+                    <div class="plant"></div>
+                </div>
+            </div>
+
+            <!-- Tagline -->
+            <div class="tagline">
+                <h2>Turn your ideas into reality.</h2>
+                <p>Start for free and get attractive offers from the community</p>
+            </div>
+        </div>
+
+        <!-- Right section with signup form -->
+        <div class="right-section">
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="logo-line line-h1"></div>
+                    <div class="logo-line line-h2"></div>
+                    <div class="logo-line line-v1"></div>
+                    <div class="logo-line line-v2"></div>
+                </div>
+            </div>
+
+            <h2>Create an Account</h2>
+            <p class="subtitle">Start your journey with us today</p>
+
+            <button class="google-btn">
+                <svg class="google-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                    <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12
+                    s5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20
+                    s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />
+                    <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657
+                    C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z" />
+                    <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36
+                    c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" />
+                    <path fill="#1976D2"
+                        d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571
+                    c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
+                </svg>
+                Sign up with Google
+            </button>
+
+            <div class="divider">or Sign up with Email</div>
+
+            <form>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" placeholder="John" required>
+                        <div class="error-message">Please enter your first name</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" placeholder="Doe" required>
+                        <div class="error-message">Please enter your last name</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="name@domain.com" required>
+                    <div class="error-message">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="At least 8 characters" required pattern=".{8,}">
+                    <div class="error-message">Password must be at least 8 characters long</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    <div class="error-message">Passwords do not match</div>
+                </div>
+
+                <div class="terms">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">By signing up, I agree to the <a href="#">Terms of Service</a> and <a
+                            href="#">Privacy Policy</a></label>
+                </div>
+
+                <button type="submit" class="signup-btn">Create Account</button>
+            </form>
+
+            <div class="login-link">
+                Already have an account? <a href="#">Log in</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
